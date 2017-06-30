@@ -8,7 +8,7 @@ After submitting the form an email will be sent to the mail address the user pro
 In this email he will be redirected to the reset HTML page . The access token will be added to the HTML "Reset your password" as a query parameter for authentication.
 
 When the user will try to rest the password, the "isEligible" method will try to authenticate the access token he came with.
-When authenticated (token lifetime still valid and the its the same token), the new password will be hashed with SHY-2 algorithm and updeted in the database.
+When authenticated (token lifetime still valid and its the same token), the new password will be hashed with SHY-2 algorithm and updeted in the database.
 
 SPRING BOOT - FORGOT MY PASSWORD APP :
 
