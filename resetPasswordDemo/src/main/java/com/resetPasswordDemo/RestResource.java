@@ -22,15 +22,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class RestResource {
 
 	@Autowired
-	private static Person customer = null;
+	private PersonDAO dao;
 
-	@Autowired
-	PersonDAO dao;
-
+	private  static final String USER = "user" ;
+	
 	@RequestMapping(value = "test/signup", produces = MediaType.APPLICATION_JSON, consumes = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
-	public Response signup(@RequestBody Person person, @Context HttpServletRequest req) {
-		HttpSession session = req.getSession(true);
-		session.setAttribute("user", person);
+	public Response signup(@RequestBody Person person, @Context HttpServletRequest req,@Context HttpSession session) {
+	    session = req.getSession(true);
+		session.setAttribute(USER, person);
 		dao.signup(person);
 		String[] names = person.getEmail().split("@") ; 
 		return Response.status(200).entity(new Message("Welcome "+ names[0] ,null)).build();
@@ -57,10 +56,9 @@ public class RestResource {
 	}
 
 	@RequestMapping(path = "test/updateMyPassword/{token}", produces = MediaType.APPLICATION_JSON, consumes = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
-	public Response updatePassword(@RequestBody String newPassword , @PathVariable("token") String token,@Context HttpServletRequest req) {
-		HttpSession session = req.getSession(false) ; 
-		Object tempPesron = session.getAttribute("user");
-		customer = (Person) tempPesron;
+	public Response updatePassword(@RequestBody String newPassword , @PathVariable("token") String token,@Context HttpServletRequest req, @Context HttpSession session) {
+		 session = req.getSession(false) ; 
+		 Person customer = (Person)  session.getAttribute(USER);
 		if (dao.isEligible(customer,token)){
 			dao.updatePassword(customer.getEmail(), newPassword);
 			return  Response.status(200).entity(new Message("Your password has been rest successfully", null)).build(); 
