@@ -1,6 +1,6 @@
 
 /**
- * Message POJO will be used as a customer response for REST API.
+ * Message POJO will be used as a customer (JAX-RS) response for REST API.
  */
 package com.resetPasswordDemo;
 

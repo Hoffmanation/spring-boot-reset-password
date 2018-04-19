@@ -6,7 +6,7 @@ import javax.mail.internet.InternetAddress;
 
 
 /**
- * MailMessageRequest POJO will be used as a customer response for the Mail REST API.
+ * MailMessageRequest POJO will be used as a custom response for the Mail REST API.
  */
 public class MailMessageRequest {
 

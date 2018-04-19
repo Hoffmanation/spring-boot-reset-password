@@ -46,7 +46,7 @@ public abstract class Util {
 		return hexString.toString();
 	}
 
-	// ===============salt method====================
+	// ===============String salt method====================
 
 	public static String getSaltString() {
 		String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -64,8 +64,8 @@ public abstract class Util {
 	// ===============mail method ====================
 	public static boolean sendMail(MailMessageRequest messageRequest) {
 
-		final String username = "orenhoffman1777@gmail.com";
-		final String password = "abulele88abulele99";
+		final String username = "your-email-account";
+		final String password = "your-account-password";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
