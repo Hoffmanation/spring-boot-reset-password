@@ -61,7 +61,7 @@ public class RestResource {
 		 Person customer = (Person)  session.getAttribute(USER);
 		if (dao.isEligible(customer,token)){
 			dao.updatePassword(customer.getEmail(), newPassword);
-			return  Response.status(200).entity(new Message("Your password has been rest successfully", null)).build(); 
+			return  Response.status(200).entity(new Message("Your password has been reset successfully", null)).build(); 
 		}
 		return  Response.status(200).entity(new Message("*Request not authorized", null)).build(); 
 	}
