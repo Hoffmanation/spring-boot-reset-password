@@ -64,8 +64,8 @@ public abstract class Util {
 	// ===============mail method ====================
 	public static boolean sendMail(MailMessageRequest messageRequest) {
 
-		final String username = "your-email-account";
-		final String password = "your-account-password";
+		final String username = "orenhoffman1777@gmail.com";
+		final String password = "abulele88abulele99";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
