@@ -40,7 +40,7 @@ public class PersonService implements PersonDAO {
 	}
 
 	@Override
-	public boolean updatePassword(String email, String password) {
+	public boolean updatePassword(String email, String password) {      
 		Person temp = service.getPersonByEmail(email);
 		temp.setPassword(Util.encryptSHY2(password));
 		service.save(temp);
