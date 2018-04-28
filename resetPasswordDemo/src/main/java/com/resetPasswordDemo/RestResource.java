@@ -39,9 +39,9 @@ public class RestResource {
 	public Response login(@RequestBody Person person, @Context HttpServletResponse res) {
 		if (dao.login(person)) {
 			String[] names = person.getEmail().split("@") ; 
-			return Response.status(200).entity(new Message("Welcome "+ names[0] ,null)).build();
+			return Response.status(200).entity(new Message("Welcome "+ names[0] ,true)).build();
 		}
-		return Response.status(200).entity(new Message("*Wrong email or password", null)).build();
+		return Response.status(200).entity(new Message("*Wrong email or password", false)).build();
 
 	}
 

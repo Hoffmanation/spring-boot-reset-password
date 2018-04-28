@@ -12,7 +12,7 @@ resetPasswordApp.controller("resetPasswordAppController", function($timeout, $sc
 		        url : "http://localhost:8090/test/login",
 		        data: person,
 		    }).then(function mySuccess(response) {
-		    	if (response.data.message=="LoggedIn"){
+		    	if (response.data.entity.obj==true){
 		    		$window.location.href = 'http://localhost:8090/index.html';
 		    	}
 		    }, function myError(response) {
@@ -30,14 +30,18 @@ resetPasswordApp.controller("resetPasswordAppController", function($timeout, $sc
 			     method : "post",
 			     url : "http://localhost:8090/test/signup",
 			     data: person,
-			 }).then(function mySuccess(response) {
-			     $scope.myWelcome = response.data;
-			 }, function myError(response) {
-			     $scope.myWelcome = response.statusText;
-			 });
-		 
-		 
+		    }).then(function mySuccess(response) {
+		    	if (response.data.entity.obj==true){
+		    		$window.location.href = 'http://localhost:8090/index.html';
+		    	}
+		    }, function myError(response) {
+		        $scope.myWelcome = response.statusText;
+		    });
 	}
+
+		 
+		 
+
 	 
  
 	 $scope.forgotMyPassword = function() {
