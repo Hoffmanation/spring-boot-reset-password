@@ -20,7 +20,7 @@ SPRING BOOT - FORGOT MY PASSWORD APP :
 #AngularJs 
 #HTML
 
-*Please note that the javaMail method in Util.class comes with default gmail configuration, u will need to configure it to your satisfaction and include your own Email and Username.
+*PLEASE NOTE --- > that the javaMail method in Util.class comes with default gmail configuration, u will need to configure it to your satisfaction and include your own Email and Username.
 
 To run the application run : http://localhost:8090
 
