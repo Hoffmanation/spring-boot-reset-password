@@ -1,157 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <script src="js/angularjs.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="js/app.js"></script>
+<meta name="_csrf" content="${_csrf.token}"/>
+	<!-- default header name is X-CSRF-TOKEN -->
+	<meta name="_csrf_header" content="${_csrf.headerName}"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Forgot my password Demo</title>
+    
+    <!--CSS Defenitions  -->
+    <link href="resources/css/blog-home.css" rel="stylesheet">
+    <link href="resources/css/bootstrap.css" rel="stylesheet">
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/css/common.css" rel="stylesheet">
+    <link href="resources/css/form.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!--JS Defenitions  -->
+	<script src="resources/js/angular.min.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/app.js"></script>
+	<script src="resources/js/ui-bootstrap-1.1.0.min.js"></script>
+      
+ 
 </head>
-<style>
-form {
-    border: 3px solid #f1f1f1;
-}
 
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
-
-button:hover {
-    opacity: 0.8;
-}
-
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
-
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-}
-
-img.avatar {
-    width: 40%;
-    border-radius: 50%;
-}
-
-.container {
-    padding: 16px;
-}
-
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-       display: block;
-       float: none;
-    }
-    .cancelbtn {
-       width: 100%;
-    }
-}
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-    .cancelbtn, .signupbtn {
-       width: 100%;
-    }
-}
-
-</style>
 <body>
 
-<div data-ng-app="resetPasswordApp" data-ng-controller="resetPasswordAppController">
 
-<form >
-<h1>Login</h1>
-  <div class="container">
-    <label><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" ng-model="email" required>
+	<!--angularJS definition  -->
+	<div data-ng-app="resetPasswordApp" data-ng-controller="resetPasswordAppController">
 
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" ng-model="password" required>
-
-    <button type="submit" ng-click="login()">Login</button>
-
-<div>
-  <button onclick="document.getElementById('id01').style.display='block'" >Forgot My Password</button>
-
-  <div id="id01" class="w3-modal">
-    <div class="w3-modal-content">
-      <header class="w3-container w3-teal"> 
-        <span onclick="document.getElementById('id01').style.display='none'" 
-        class="w3-button w3-display-topright">&times;</span>
-        <h2>Forgot My Password</h2>
-      </header>
-      <div class="w3-container">
-         <label><b>Please enter your email to reset your password</b></label>
-    <input type="text" placeholder="Enter Email" ng-model="emailToRecover" required>
-    <button type="submit" ng-click="forgotMyPassword()">Submit</button>
+<div class="container">
+    <form class="form-signin">
+        <h1 class="form-heading">Log in</h1>
+        
+        <div class="form-group">
+            <input name="email" type="text" class="form-control" placeholder="Email" autofocus="true" ng-model="email" />
+            <input name="password" type="password" class="form-control" placeholder="password" ng-model="password"/>
+            <span class="errorMessage">{{loginMessage}}</span>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="login()">Log In</button>
+             <button class="btn btn-lg btn-primary btn-block" type="submit" data-toggle="modal" data-target="#myModal">Forgot my password</button>
+            <h4 class="text-center"><a href="registration.html">Create an account</a></h4>
+        </div>
+        
+    </form>
+    
+    
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Forgot My Password</h4>
+        </div>
+        <div class="modal-body">
+			<p>Please enter your email to reset your password</p>
+		    <input class="form-control" type="text" placeholder="Enter Email" ng-model="emailToRecover" required>
+		    <br>
+		    <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="forgotMyPassword()">Submit</button>
+		     
+        </div>
+        <div class="modal-footer">
+         <p  style="color: red; text-align: left;">{{forgotMyPasswordError}}</p>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
       
-      <footer class="w3-container w3-teal">
-        <p style="color: red;">{{forgotMyPasswordError}}</p>
-      </footer>
     </div>
   </div>
-</div>
-  
-  
-  
-  </div>
-
-  
-
-</form>
-
-
-
-
-<form >
-<h1>signup</h1>
-  <div class="container">
-    <label><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" ng-model="email" required>
-
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" ng-model="password" required>
-
-    <button type="submit" ng-click="signup()">signup</button>
-  </div>
-
-  
-
-</form>
-
-
-
-
 
 
 
 </div>
+</div>
+
 
 </body>
 </html>
