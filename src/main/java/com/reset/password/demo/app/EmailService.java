@@ -50,8 +50,7 @@ public class EmailService {
 	private String emailUsername;
 	@Value("${emailPassword}")
 	private String emailPassword;
-	@Value("${resetPassRestUrl}")
-	private String resetPassRestUrl;
+	private static final String RESET_PASS_URL_REPLACEMENT = "inject-reset-password-url" ;
 
 
 
@@ -85,7 +84,7 @@ public class EmailService {
 			message.setFrom(new InternetAddress(emailUsername, "Reset-Password Application"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(messageRequest.getSentTo()));
 			message.setSubject(messageRequest.getSubject());
-			message.setText("swswsw");
+			message.setText("Reset-Password Application");
 			message.setContent(messageRequest.getBody(), "text/html");
 			message.setReplyTo(messageRequest.getReplayTo());
 			Transport.send(message);
@@ -157,7 +156,7 @@ private String createResetPasswordTemplate(HttpServletRequest req, String token 
 	} catch (Exception e) {
 		log.error("Faild to inject \"Reset Password URL\" in Rest password Email template" , e);
 	}
-	   content = content.replace(resetPassRestUrl, urlToInject) ;
+	   content = content.replace(RESET_PASS_URL_REPLACEMENT , urlToInject) ;
 	   return content;
 }
 
